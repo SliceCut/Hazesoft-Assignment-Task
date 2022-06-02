@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: introcept-assessment-task
+    image: hazesoft-task
     container_name: app
     restart: unless-stopped
     tty: true
@@ -22,11 +22,11 @@ services:
       - db
   db:
     image: mysql:8.0.29
-    container_name: introcept_accessment_mysql
+    container_name: hazesoft_mysql
     restart: unless-stopped
     tty: true
     environment:
-      MYSQL_DATABASE: introcept_accessment_task
+      MYSQL_DATABASE: hazesoft_task
       MYSQL_ROOT_PASSWORD: l3kjhj324undn
       MYSQL_USER: application_user
       MYSQL_PASSWORD: l3kjhj324undn
