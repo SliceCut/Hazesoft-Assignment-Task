@@ -1,35 +1,33 @@
 <?php
 namespace App\Domain\ObjectValues;
 
-class CompanyObjectValue
+use Illuminate\Support\Facades\Hash;
+
+class UserObjectValue
 {
     public ?int $id;
     public string $name;
     public string $email;
-    public string $location;
-    public string $contact_number;
+    public string $password;
 
     public function __construct(
         ?int $id,
         string $name,
         string $email,
-        string $location,
-        string $contact_number
+        string $password
     ){
         $this->id = $id;
         $this->name = $name;
         $this->email = $email;
-        $this->location = $location;
-        $this->contact_number = $contact_number;
+        $this->password = $password;
     }
 
-    public function toSql(): array
+    public function toSql()
     {
         return [
             'name' => $this->name,
             'email' => $this->email,
-            'location' => $this->location,
-            'contact_number' => $this->contact_number,
+            'password' => Hash::make($this->password)
         ];
     }
 }

@@ -71,8 +71,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
     public function update($id, array $params): bool
     {
         $model = $this->findOneOrFail($id);
-        $model->update($params);
-        return $model;
+        return $model->update($params);
     }
 
     /**

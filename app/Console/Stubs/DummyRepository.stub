@@ -35,7 +35,7 @@ class DummyRepository extends BaseRepository implements DummyRepositoryInterface
         return $this->paginate($select, $limit, $order, $sort);
     }
 
-    public function createDummy(array $data)
+    public function createNewDummy(array $data)
     {
         return $this->create($data);
     }

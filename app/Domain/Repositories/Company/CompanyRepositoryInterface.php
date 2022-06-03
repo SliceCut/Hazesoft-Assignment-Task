@@ -2,6 +2,8 @@
 
 namespace App\Domain\Repositories\Company;
 
+use App\Domain\ObjectValues\CompanyObjectValue;
+
 interface CompanyRepositoryInterface
 {
     public function getCompanies(
@@ -17,9 +19,11 @@ interface CompanyRepositoryInterface
         string $sort = 'desc'
     );
 
-    public function createCompany(array $data);
+    public function findCompanyOrFail(int $id);
 
-    public function updateCompany(int $id, array $data): bool;
+    public function createNewCompany(CompanyObjectValue $companyObjectValue);
+
+    public function updateCompany(int $id, CompanyObjectValue $companyObjectValue): bool;
 
     public function deleteCompany(int $id): bool;
 }

@@ -5,8 +5,7 @@ class DummyObjectValue
 {
     public function __construct(
         
-    )
-    {
+    ){
         
     }
 }
