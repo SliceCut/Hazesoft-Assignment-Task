@@ -1,0 +1,53 @@
+<?php
+
+namespace App\Domain\Repositories\Dummy;
+
+use App\Models\Dummy;
+use App\Domain\Repositories\BaseRepository;
+use App\Domain\Repositories\Dummy\DummyRepositoryInterface;
+
+class DummyRepository extends BaseRepository implements DummyRepositoryInterface
+{
+	/**
+     * DummyRepository constructor.
+     *
+     * @param Dummy $dummy
+     */
+    public function __construct(Dummy $model)
+    {
+        parent::__construct($model);
+    }
+
+    public function getDummy(
+        array $select = ['*'],
+        string $order = 'id',
+        string $sort = 'desc'
+    ){
+        return $this->all($select, $order, $sort);
+    }
+
+    public function paginateDummy(
+        array $select = ['*'],
+        int $limit = 20,
+        string $order = 'id',
+        string $sort = 'desc'
+    ){
+        return $this->paginate($select, $limit, $order, $sort);
+    }
+
+    public function createDummy(array $data)
+    {
+        return $this->create($data);
+    }
+
+    public function updateDummy(int $id, array $data): bool
+    {
+        return $this->update($id, $data);
+    }
+
+    public function deleteDummy(int $id): bool
+    {
+        return $this->delete($id);
+    }
+
+}

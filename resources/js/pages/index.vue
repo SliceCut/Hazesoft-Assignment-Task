@@ -33,7 +33,6 @@
                                 {{company.name}}
                             </router-link>
                         </td>
-                        <td>{{company.name}}</td>
                         <td>{{company.location}}</td>
                         <td>{{company.contact_number}}</td>
                         <td></td>

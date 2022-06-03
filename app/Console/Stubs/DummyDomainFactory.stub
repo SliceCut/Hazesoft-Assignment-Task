@@ -1,0 +1,12 @@
+<?php
+namespace App\Domain\Factories;
+
+use App\Domain\Abstracts\FactoryAbstract;
+
+class DummyFactory extends FactoryAbstract
+{
+    public static function make(array $data)
+    {
+        
+    }
+}

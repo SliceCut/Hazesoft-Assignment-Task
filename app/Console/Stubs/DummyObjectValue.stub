@@ -1,0 +1,12 @@
+<?php
+namespace App\Domain\ObjectValues;
+
+class DummyObjectValue
+{
+    public function __construct(
+        
+    )
+    {
+        
+    }
+}

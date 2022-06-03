@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Domain\Repositories\Dummy;
+
+interface DummyRepositoryInterface
+{
+    public function getDummy(
+        array $select = ['*'],
+        string $order = 'id',
+        string $sort = 'desc'
+    );
+
+    public function paginateDummy(
+        array $select = ['*'],
+        int $limit = 20,
+        string $order = 'id',
+        string $sort = 'desc'
+    );
+
+    public function createDummy(array $data);
+
+    public function updateDummy(int $id, array $data): bool;
+
+    public function deleteDummy(int $id): bool;
+}
