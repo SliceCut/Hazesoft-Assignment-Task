@@ -6,6 +6,8 @@ use App\Domain\ObjectValues\CompanyObjectValue;
 
 interface CompanyRepositoryInterface
 {
+    public function firstOrFail();
+
     public function getCompanies(
         array $select = ['*'],
         string $order = 'id',

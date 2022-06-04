@@ -113,6 +113,15 @@ abstract class BaseRepository implements BaseRepositoryInterface
     }
 
     /**
+     * @return Model
+     * @throws ModelNotFoundException
+     */
+    public function firstOrFail()
+    {
+        return $this->model->firstOrFail();
+    }
+
+    /**
      * @param  $id
      * @return mixed
      * @throws ModelNotFoundException

@@ -14,6 +14,11 @@ class CompanyRepository extends BaseRepository implements CompanyRepositoryInter
         parent::__construct($company);
     }
 
+    public function firstOrFail()
+    {
+        return parent::firstOrFail();
+    }
+
     public function findCompanyOrFail(int $id)
     {
         return $this->findOneOrFail($id);
