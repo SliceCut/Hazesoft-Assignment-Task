@@ -78,7 +78,7 @@ class DepartmentTest extends TestCase
         $department = [
             'name' => 'Android Department 1',
         ];
-        $response = $this->json("POST","/api/v1/departments", $department);
+        $response = $this->json("POST", "/api/v1/departments", $department);
         $response->assertStatus(422);
     }
 
@@ -88,24 +88,22 @@ class DepartmentTest extends TestCase
         $this->actingAs($user);
 
         $department = Department::factory()->create();
-        $response = $this->json("PATCH","/api/v1/departments/{$department->id}", [
+        $response = $this->json("PATCH", "/api/v1/departments/{$department->id}", [
             'name' => "Test Department section",
             'company_id' => $department->company_id,
         ]);
         $response->assertStatus(200)
             ->assertJsonFragment(['message' => 'Department updated successfully']);
-
     }
 
     public function test_it_can_delete_department()
     {
         $user = User::factory()->create();
-        $this->actingAs($user);   
+        $this->actingAs($user);
 
         $department = Department::factory()->create();
-        $response = $this->json("DELETE","/api/v1/departments/{$department->id}");
+        $response = $this->json("DELETE", "/api/v1/departments/{$department->id}");
         $response->assertStatus(200)
             ->assertJsonFragment(['message' => 'Department deleted successfully']);
-
     }
 }

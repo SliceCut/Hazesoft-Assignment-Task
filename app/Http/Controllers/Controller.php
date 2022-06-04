@@ -26,7 +26,7 @@ class Controller extends BaseController
 
     public function responseOk(string $message, $data = null, int $code = 200): Response
     {
-        if($data) {
+        if ($data) {
             return new Response([
                 'data' => $data,
                 'message' => $message
@@ -36,7 +36,6 @@ class Controller extends BaseController
                 'message' => $message
             ], $code);
         }
-        
     }
 
     public function responsePaginate($data)
