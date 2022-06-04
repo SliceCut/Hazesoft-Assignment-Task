@@ -85,7 +85,7 @@ class CompanyTest extends TestCase
             'location' => 'New York',
             'contact_number' => '32424324'
         ];
-        $response = $this->json("POST","/api/v1/companies", $company);
+        $response = $this->json("POST", "/api/v1/companies", $company);
         $response->assertStatus(422);
     }
 
@@ -95,7 +95,7 @@ class CompanyTest extends TestCase
         $this->actingAs($user);
 
         $company = Company::factory()->create();
-        $response = $this->json("PATCH","/api/v1/companies/{$company->id}", [
+        $response = $this->json("PATCH", "/api/v1/companies/{$company->id}", [
             'name' => $company->name,
             'email' => $company->email,
             'location' => 'John Doe Test',
@@ -103,18 +103,16 @@ class CompanyTest extends TestCase
         ]);
         $response->assertStatus(200)
             ->assertJsonFragment(['message' => 'Company updated successfully']);
-
     }
 
     public function test_it_can_delete_company()
     {
         $user = User::factory()->create();
-        $this->actingAs($user);   
+        $this->actingAs($user);
 
         $company = Company::factory()->create();
-        $response = $this->json("DELETE","/api/v1/companies/{$company->id}");
+        $response = $this->json("DELETE", "/api/v1/companies/{$company->id}");
         $response->assertStatus(200)
             ->assertJsonFragment(['message' => 'Company deleted successfully']);
-
     }
 }

@@ -60,7 +60,7 @@ class EmployeeTest extends TestCase
         $user = User::factory()->create();
         $this->actingAs($user);
         $employee = Employee::factory()->count(1)->make()->first()->toArray();
-        $response = $this->json("POST","/api/v1/employees", Arr::except($employee, ['name','enroll_id']));
+        $response = $this->json("POST", "/api/v1/employees", Arr::except($employee, ['name','enroll_id']));
         $response->assertStatus(422);
     }
 
@@ -70,8 +70,8 @@ class EmployeeTest extends TestCase
         $this->actingAs($user);
 
         $employee = Employee::factory()->create();
-        
-        $response = $this->json("PATCH","/api/v1/employees/{$employee->id}", array_merge(
+
+        $response = $this->json("PATCH", "/api/v1/employees/{$employee->id}", array_merge(
             $employee->toArray(),
             [
                 'name' => 'John Doe'
@@ -79,18 +79,16 @@ class EmployeeTest extends TestCase
         ));
         $response->assertStatus(200)
             ->assertJsonFragment(['message' => 'Employee updated successfully']);
-
     }
 
     public function test_it_can_delete_employee()
     {
         $user = User::factory()->create();
-        $this->actingAs($user);   
+        $this->actingAs($user);
 
         $employee = Employee::factory()->create();
-        $response = $this->json("DELETE","/api/v1/employees/{$employee->id}");
+        $response = $this->json("DELETE", "/api/v1/employees/{$employee->id}");
         $response->assertStatus(200)
             ->assertJsonFragment(['message' => 'Employee deleted successfully']);
-
     }
 }
