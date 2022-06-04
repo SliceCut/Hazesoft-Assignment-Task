@@ -1,6 +1,6 @@
 <template>
-    <div class="rwo">
-        <div class="card col-md-6 mx-auto">
+    <div class="row my-5">
+        <div class="card col-md-6 mx-auto px-0">
             <div class="card-header">
                 <h2>Login</h2>
             </div>
