@@ -18,6 +18,11 @@ class DummyRepository extends BaseRepository implements DummyRepositoryInterface
         parent::__construct($model);
     }
 
+    public function findDummyOrFail(int $id)
+    {
+        return $this->findOneOrFail($id);
+    }
+
     public function getDummy(
         array $select = ['*'],
         string $order = 'id',

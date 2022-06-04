@@ -18,7 +18,7 @@ class CreateEmployeesTable extends Migration
             $table->id();
             $table->foreignIdFor(Company::class)->constrained();
             $table->string('name');
-            $table->string('enroll_id');
+            $table->string('enroll_id')->unique();
             $table->string('email');
             $table->string('contact');
             $table->string('designation');

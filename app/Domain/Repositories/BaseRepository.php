@@ -2,6 +2,7 @@
 
 namespace App\Domain\Repositories;
 
+use App\Domain\Abstracts\CriteriaInterface;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -13,9 +14,14 @@ abstract class BaseRepository implements BaseRepositoryInterface
 {
     public $model;
 
+    protected $defaultRelations = [];
+    protected $filters = [];
+
     public function  __construct($model)
     {
         $this->model = $model;
+        $this->withRelations($this->defaultRelations);
+        $this->applyFilters();
     }
 
     public function queryBuilder(): Builder
@@ -28,11 +34,12 @@ abstract class BaseRepository implements BaseRepositoryInterface
      *@return self
      */
 
-    public function withRelations(array $relation): self
+    public function withRelations( array $relation): self
     {
         $this->model = $this->model->with($relation);
         return $this;
     }
+    
     public function withCounts(array $counts): self
     {
         $this->model = $this->model->withCount($counts);
@@ -191,6 +198,28 @@ abstract class BaseRepository implements BaseRepositoryInterface
         }
 
         return $this;
+    }
+
+
+    private function applyFilters()
+    {
+        $filters = request()->all();
+
+        foreach($filters as $filter => $value) {
+            if(isset($this->filters[$filter])) {
+                $resolver = $this->resolveFilter($filter, $value);
+                if($resolver instanceof CriteriaInterface) {
+                    $this->model = $resolver->apply($this->model); 
+                } else {
+                    throw new \Exception("Filter Criteria must be instance of ".CriteriaInterface::class);
+                }
+            }
+        }
+    }
+
+    private function resolveFilter(string $filter, $value)
+    {
+        return new $this->filters[$filter]($value);
     }
 
 
