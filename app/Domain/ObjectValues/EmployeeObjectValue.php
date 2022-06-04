@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Domain\ObjectValues;
 
 class EmployeeObjectValue
@@ -18,7 +19,7 @@ class EmployeeObjectValue
         string $email,
         string $contact,
         string $designation
-    ){
+    ) {
         $this->id =$id;
         $this->company_id =$company_id;
         $this->name =$name;

@@ -12,7 +12,7 @@ class EmployeeUpdateRequest extends EmployeeRequest
      *
      * @return bool
      */
-    public function authorize():bool
+    public function authorize(): bool
     {
         return true;
     }
@@ -28,7 +28,7 @@ class EmployeeUpdateRequest extends EmployeeRequest
             parent::rules(),
             [
                 'enroll_id' => [
-                    Rule::unique('employees','enroll_id')->ignore($this->employee->id)
+                    Rule::unique('employees', 'enroll_id')->ignore($this->employee->id)
                 ]
             ]
         );

@@ -22,8 +22,7 @@ class CompanyController extends Controller
     public function __construct(
         CompanyRepositoryInterface $companyRepository,
         EmployeeRepositoryInterface $employeeRepository
-    )
-    {
+    ) {
         $this->companyRepository = $companyRepository;
         $this->employeeRepository = $employeeRepository;
     }
@@ -37,7 +36,7 @@ class CompanyController extends Controller
     {
         $perpage = $request->get('perPage', 20);
 
-        $companies = $this->companyRepository->paginateCompanies(['*'],$perpage);
+        $companies = $this->companyRepository->paginateCompanies(['*'], $perpage);
 
         return $this->responsePaginate(
             CompanyResource::collection($companies)
@@ -56,7 +55,7 @@ class CompanyController extends Controller
             $company = $this->companyRepository->createNewCompany(
                 CompanyFactory::make($request->all())
             );
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             return $this->responseError($e);
         }
 
@@ -92,7 +91,7 @@ class CompanyController extends Controller
                 $company->id,
                 CompanyFactory::make($request->all())
             );
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             return $this->responseError($e);
         }
 
@@ -111,7 +110,7 @@ class CompanyController extends Controller
     {
         try {
             $company = $this->companyRepository->deleteCompany($company->id);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             return $this->responseError($e);
         }
 

@@ -12,7 +12,7 @@ class DepartmentUpdateRequest extends DepartmentRequest
      *
      * @return bool
      */
-    public function authorize():bool
+    public function authorize(): bool
     {
         return true;
     }

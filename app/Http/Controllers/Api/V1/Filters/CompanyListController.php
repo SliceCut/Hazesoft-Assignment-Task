@@ -13,8 +13,7 @@ class CompanyListController extends Controller
 
     public function __construct(
         CompanyRepositoryInterface $companyRepository
-    )
-    {
+    ) {
         $this->companyRepository = $companyRepository;
     }
 

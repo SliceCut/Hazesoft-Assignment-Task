@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
             UserRepositoryInterface::class,
             UserRepository::class
         );
-        
+
         $this->app->bind(
             CompanyRepositoryInterface::class,
             CompanyRepository::class
@@ -50,20 +50,20 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Route::bind('company', function($id, $route) {
+        Route::bind('company', function ($id, $route) {
             $company = app()->make(CompanyRepositoryInterface::class);
-        
+
             return $company->findCompanyOrFail($id);
         });
 
-        Route::bind('department', function($id, $route) {
+        Route::bind('department', function ($id, $route) {
             $department = app()->make(DepartmentRepositoryInterface::class);
             return $department->findDepartmentOrFail($id);
         });
 
-        Route::bind('employee', function($id, $route) {
+        Route::bind('employee', function ($id, $route) {
             $employee = app()->make(EmployeeRepositoryInterface::class);
-        
+
             return $employee->findEmployeeOrFail($id);
         });
     }

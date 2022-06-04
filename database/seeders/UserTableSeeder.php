@@ -9,11 +9,9 @@ use Illuminate\Support\Facades\Hash;
 
 class UserTableSeeder extends Seeder
 {
-
     public function __construct(
         UserRepositoryInterface $userRepository
-    )
-    {
+    ) {
         $this->userRepository = $userRepository;
     }
 

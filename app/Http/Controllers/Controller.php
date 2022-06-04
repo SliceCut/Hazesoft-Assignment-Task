@@ -11,8 +11,10 @@ use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-    
+    use AuthorizesRequests;
+    use DispatchesJobs;
+    use ValidatesRequests;
+
     public function responseError(Exception $e, int $code = 500): Response
     {
         return new Response([
@@ -22,7 +24,7 @@ class Controller extends BaseController
         ], 500);
     }
 
-    public function responseOk(string $message, $data = null,int $code = 200): Response
+    public function responseOk(string $message, $data = null, int $code = 200): Response
     {
         return new Response([
             'data' => $data,

@@ -14,8 +14,9 @@ class AuthUserDetailController extends Controller
     {
         $user = auth()->user();
 
-        if(!$user)
+        if (!$user) {
             new AuthorizationException("unauthorized");
+        }
 
         return new Response([
             'user' => UserResource::make($user)

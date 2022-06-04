@@ -13,9 +13,8 @@ class CompanySeeder extends Seeder
 
     public function __construct(
         CompanyRepositoryInterface $companyRepository
-    )
-    {
-        $this->companyRepository = $companyRepository;   
+    ) {
+        $this->companyRepository = $companyRepository;
     }
 
     /**
@@ -28,11 +27,10 @@ class CompanySeeder extends Seeder
         $companies = Company::factory()
             ->count(10)
             ->make()
-            ->each(function($row) {
+            ->each(function ($row) {
                 $this->companyRepository->createNewCompany(
                     CompanyFactory::make($row->toArray())
                 );
             });
-        
     }
 }

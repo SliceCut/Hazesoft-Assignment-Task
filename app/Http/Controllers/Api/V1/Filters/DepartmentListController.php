@@ -13,8 +13,7 @@ class DepartmentListController extends Controller
 
     public function __construct(
         DepartmentRepositoryInterface $departmentRepository
-    )
-    {
+    ) {
         $this->departmentRepository = $departmentRepository;
     }
 
