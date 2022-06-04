@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Company;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class EmployeeFactory extends Factory
 {
@@ -18,8 +19,8 @@ class EmployeeFactory extends Factory
             'company_id' => Company::firstOrFail()->id,
             'name' => $this->faker->name(),
             'email' => $this->faker->email(),
-            'enroll_id' => rand(1, 1000),
-            'contact' => $this->faker->phoneNumber(),
+            'enroll_id' => Str::random(12),
+            'contact' => "2242342",
             'designation' => "Fullstack Designation"
         ];
     }

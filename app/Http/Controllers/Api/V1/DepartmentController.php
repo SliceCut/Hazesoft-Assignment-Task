@@ -88,7 +88,6 @@ class DepartmentController extends Controller
      */
     public function update(DepartmentUpdateRequest $request, Department $department)
     {
-        dd($request->all());
         try {
             $company = $this->departmentRepository->updateDepartment(
                 $department->id,
