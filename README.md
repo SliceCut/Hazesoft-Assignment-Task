@@ -21,5 +21,5 @@ This project is to create company, department and employee feature along with AP
     - [goto](http://localhost:8088)
 
 ## Login Detail
-hazesoft@gmail.com
-admin123
+Username: hazesoft@gmail.com
+password: admin123
