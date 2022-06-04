@@ -10,24 +10,24 @@ use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase
 {
-    use RefreshDatabase;
+    // use RefreshDatabase;
 
-    private UserRepositoryInterface $userRepository;
+    // private UserRepositoryInterface $userRepository;
     
-    public function __construct(
-        UserRepositoryInterface $userRepository
-    ){
-        $this->userRepository = $userRepository;   
-    }
+    // public function __construct(
+    //     UserRepositoryInterface $userRepository
+    // ){
+    //     $this->userRepository = $userRepository;   
+    // }
 
-    public function test_it_can_create_new_user()
-    {
-        $user = DomainUserFactory::make(
-            (new UserFactory())->definition()
-        );
-        $result = $this->userRepository->createNewUser($user);
+    // public function test_it_can_create_new_user()
+    // {
+    //     $user = DomainUserFactory::make(
+    //         (new UserFactory())->definition()
+    //     );
+    //     $result = $this->userRepository->createNewUser($user);
         
-        $this->assertSame($user->name, $result->name);
-        $this->assertSame($user->email, $result->email);
-    }
+    //     $this->assertSame($user->name, $result->name);
+    //     $this->assertSame($user->email, $result->email);
+    // }
 }
