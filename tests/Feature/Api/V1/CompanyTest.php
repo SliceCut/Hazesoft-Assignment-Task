@@ -47,11 +47,17 @@ class CompanyTest extends TestCase
         $response->assertJson(function(AssertableJson $json) use($company){
             $json->hasAll([
                 'data',
-                'message',
+                'message'
             ])
             ->where('data.name', $company['name'])
             ->where('data.email', $company['email'])
-            ->where('data.location', $company['location']);
+            ->where('data.location', $company['location'])
+            ->where('data.contact_number', $company['contact_number']);
         });
+    }
+
+    public function test_it_will_fail_to_create_new_company()
+    {
+        
     }
 }
