@@ -2,7 +2,7 @@
 This project is to create company, department and employee feature along with API development, Unit Testing of feature and Vue(SPA) for frontend interaction.
 
 ## Technologies
-- Backend (Laravel - Latest Version)
+- Backend (Laravel)
 - Frontend (Vue - SPA)
 
 ## Environment Required
