@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Console\Commands\Traits;
 
 use Illuminate\Support\Facades\File;
@@ -24,8 +25,8 @@ trait StubTrait
     public function createDirectory(string $path)
     {
         $path = app_path($path);
-        
-        if(!File::exists($path)){
+
+        if (!File::exists($path)) {
             return File::makeDirectory($path, 0774, true, true);
         }
     }

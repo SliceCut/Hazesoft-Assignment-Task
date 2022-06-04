@@ -28,7 +28,7 @@ class EmployeeStoreRequest extends EmployeeRequest
             parent::rules(),
             [
                 'enroll_id' => [
-                    Rule::unique('employees','enroll_id')
+                    Rule::unique('employees', 'enroll_id')
                 ]
             ]
         );

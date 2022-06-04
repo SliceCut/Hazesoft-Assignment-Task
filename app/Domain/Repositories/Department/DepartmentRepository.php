@@ -16,7 +16,7 @@ class DepartmentRepository extends BaseRepository implements DepartmentRepositor
         'company_id' => CompanyCriteria::class
     ];
 
-	/**
+    /**
      * DepartmentRepository constructor.
      *
      * @param Department $dummy
@@ -35,7 +35,7 @@ class DepartmentRepository extends BaseRepository implements DepartmentRepositor
         array $select = ['*'],
         string $order = 'id',
         string $sort = 'desc'
-    ){
+    ) {
         return $this->all($select, $order, $sort);
     }
 
@@ -44,7 +44,7 @@ class DepartmentRepository extends BaseRepository implements DepartmentRepositor
         int $limit = 20,
         string $order = 'id',
         string $sort = 'desc'
-    ){
+    ) {
         return $this->paginate($select, $limit, $order, $sort);
     }
 
@@ -62,5 +62,4 @@ class DepartmentRepository extends BaseRepository implements DepartmentRepositor
     {
         return $this->delete($id);
     }
-
 }

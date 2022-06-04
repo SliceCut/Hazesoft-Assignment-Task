@@ -18,7 +18,7 @@ class EmployeeRepository extends BaseRepository implements EmployeeRepositoryInt
         'department_id' => EmployeeDepartmentCriteria::class,
     ];
 
-	/**
+    /**
      * EmployeeRepository constructor.
      *
      * @param Employee $dummy
@@ -50,7 +50,7 @@ class EmployeeRepository extends BaseRepository implements EmployeeRepositoryInt
         array $select = ['*'],
         string $order = 'id',
         string $sort = 'desc'
-    ){
+    ) {
         return $this->all($select, $order, $sort);
     }
 
@@ -59,7 +59,7 @@ class EmployeeRepository extends BaseRepository implements EmployeeRepositoryInt
         int $limit = 20,
         string $order = 'id',
         string $sort = 'desc'
-    ){
+    ) {
         return $this->paginate($select, $limit, $order, $sort);
     }
 
@@ -68,11 +68,11 @@ class EmployeeRepository extends BaseRepository implements EmployeeRepositoryInt
         return $this->create($employeeObjectValue->toSql());
     }
 
-    public function updateEmployee(int $id,EmployeeObjectValue $employeeObjectValue): bool
+    public function updateEmployee(int $id, EmployeeObjectValue $employeeObjectValue): bool
     {
         return $this->update($id, $employeeObjectValue->toSql());
     }
-    
+
     public function syncDepartment(Employee $employee, array $datas)
     {
         return $employee->departments()->sync($datas);
@@ -87,5 +87,4 @@ class EmployeeRepository extends BaseRepository implements EmployeeRepositoryInt
     {
         return $this->delete($id);
     }
-
 }

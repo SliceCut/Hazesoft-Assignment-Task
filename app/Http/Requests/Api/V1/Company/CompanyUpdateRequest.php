@@ -27,7 +27,7 @@ class CompanyUpdateRequest extends CompanyRequest
         return array_merge_recursive(
             parent::rules(),
             [
-                'name' => [Rule::unique('companies','name')->ignore($this->company->id)]
+                'name' => [Rule::unique('companies', 'name')->ignore($this->company->id)]
             ]
         );
     }

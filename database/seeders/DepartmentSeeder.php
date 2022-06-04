@@ -13,9 +13,8 @@ class DepartmentSeeder extends Seeder
 
     public function __construct(
         DepartmentRepositoryInterface $departmentRepository
-    )
-    {
-        $this->departmentRepository = $departmentRepository;   
+    ) {
+        $this->departmentRepository = $departmentRepository;
     }
 
     /**
@@ -28,7 +27,7 @@ class DepartmentSeeder extends Seeder
         Department::factory()
             ->count(10)
             ->make()
-            ->each(function($row) {
+            ->each(function ($row) {
                 $this->departmentRepository->createNewDepartment(
                     DepartmentFactory::make($row->toArray())
                 );

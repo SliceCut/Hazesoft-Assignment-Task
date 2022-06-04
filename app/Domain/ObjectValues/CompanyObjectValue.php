@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Domain\ObjectValues;
 
 class CompanyObjectValue
@@ -15,7 +16,7 @@ class CompanyObjectValue
         string $email,
         string $location,
         string $contact_number
-    ){
+    ) {
         $this->id = $id;
         $this->name = $name;
         $this->email = $email;

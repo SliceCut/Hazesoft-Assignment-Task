@@ -18,8 +18,7 @@ class EmployeeController extends Controller
 
     public function __construct(
         EmployeeRepositoryInterface $employeeRepository
-    )
-    {
+    ) {
         $this->employeeRepository = $employeeRepository;
     }
 
@@ -34,7 +33,7 @@ class EmployeeController extends Controller
 
         $employees = $this->employeeRepository
             ->withRelations(['departments'])
-            ->paginateEmployees(['*'],$perpage);
+            ->paginateEmployees(['*'], $perpage);
 
         return $this->responsePaginate(
             EmployeeResource::collection($employees)
@@ -56,12 +55,12 @@ class EmployeeController extends Controller
             );
 
 
-            if($request->departments) {
+            if ($request->departments) {
                 $this->employeeRepository->syncDepartment($employee, $request->departments);
             }
 
             DB::commit();
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             DB::rollBack();
             return $this->responseError($e);
         }
@@ -100,11 +99,11 @@ class EmployeeController extends Controller
                 EmployeeFactory::make($request->all())
             );
 
-            if($request->departments) {
-               $this->employeeRepository->syncDepartment($employee, $request->departments);
+            if ($request->departments) {
+                $this->employeeRepository->syncDepartment($employee, $request->departments);
             }
             DB::commit();
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             DB::rollBack();
             return $this->responseError($e);
         }
@@ -124,7 +123,7 @@ class EmployeeController extends Controller
     {
         try {
             $employee = $this->employeeRepository->deleteEmployee($employee->id);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             return $this->responseError($e);
         }
 

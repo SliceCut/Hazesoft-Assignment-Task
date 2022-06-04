@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Domain\ObjectValues;
 
 class DepartmentObjectValue
@@ -11,7 +12,7 @@ class DepartmentObjectValue
         ?int $id,
         int $company_id,
         string $name
-    ){
+    ) {
         $this->id = $id;
         $this->company_id = $company_id;
         $this->name = $name;

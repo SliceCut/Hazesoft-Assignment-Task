@@ -23,9 +23,8 @@ class DepartmentController extends Controller
     public function __construct(
         DepartmentRepositoryInterface $departmentRepository,
         EmployeeRepositoryInterface $employeeRepository
-    )
-    {
-        $this->departmentRepository = $departmentRepository;   
+    ) {
+        $this->departmentRepository = $departmentRepository;
         $this->employeeRepository = $employeeRepository;
     }
 
@@ -39,7 +38,7 @@ class DepartmentController extends Controller
         $perpage = $request->get('perPage', 20);
 
         $departments = $this->departmentRepository
-            ->paginateDepartments(['*'],$perpage);
+            ->paginateDepartments(['*'], $perpage);
 
         return $this->responsePaginate(
             DepartmentResource::collection($departments)
@@ -58,7 +57,7 @@ class DepartmentController extends Controller
             $department = $this->departmentRepository->createNewDepartment(
                 DepartmentFactory::make($request->all())
             );
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             return $this->responseError($e);
         }
 
@@ -95,7 +94,7 @@ class DepartmentController extends Controller
                 $department->id,
                 DepartmentFactory::make($request->all())
             );
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             return $this->responseError($e);
         }
 
@@ -114,7 +113,7 @@ class DepartmentController extends Controller
     {
         try {
             $company = $this->departmentRepository->deleteDepartment($department->id);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             return $this->responseError($e);
         }
 

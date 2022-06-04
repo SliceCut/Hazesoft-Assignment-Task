@@ -17,7 +17,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
     protected $defaultRelations = [];
     protected $filters = [];
 
-    public function  __construct($model)
+    public function __construct($model)
     {
         $this->model = $model;
         $this->withRelations($this->defaultRelations);
@@ -34,19 +34,19 @@ abstract class BaseRepository implements BaseRepositoryInterface
      *@return self
      */
 
-    public function withRelations( array $relation): self
+    public function withRelations(array $relation): self
     {
         $this->model = $this->model->with($relation);
         return $this;
     }
-    
+
     public function withCounts(array $counts): self
     {
         $this->model = $this->model->withCount($counts);
         return $this;
     }
 
-    public function exceptAttribute(string $attribute, array $data):self
+    public function exceptAttribute(string $attribute, array $data): self
     {
         $this->model = $this->model->whereNotIn($attribute, $data);
         return $this;
@@ -219,13 +219,13 @@ abstract class BaseRepository implements BaseRepositoryInterface
     {
         $filters = request()->all();
 
-        foreach($filters as $filter => $value) {
-            if(isset($this->filters[$filter])) {
+        foreach ($filters as $filter => $value) {
+            if (isset($this->filters[$filter])) {
                 $resolver = $this->resolveFilter($filter, $value);
-                if($resolver instanceof CriteriaInterface) {
-                    $this->model = $resolver->apply($this->model); 
+                if ($resolver instanceof CriteriaInterface) {
+                    $this->model = $resolver->apply($this->model);
                 } else {
-                    throw new \Exception("Filter Criteria must be instance of ".CriteriaInterface::class);
+                    throw new \Exception("Filter Criteria must be instance of " . CriteriaInterface::class);
                 }
             }
         }
@@ -235,6 +235,4 @@ abstract class BaseRepository implements BaseRepositoryInterface
     {
         return new $this->filters[$filter]($value);
     }
-
-
 }
