@@ -49,11 +49,7 @@ export const useAuthStore = defineStore('auth',
                     axios
                         .post("auth/logout")
                         .then(response => {
-                            if(response.data.code === 200) {
-                                this.setLogout();
-                            } else {
-                                throw new Error("Something wrong while logging out");
-                            }
+                            this.setLogout();
                             resolve(response);
                         }).catch(errors => reject(errors));
                 });

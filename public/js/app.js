@@ -23735,11 +23735,7 @@ var useAuthStore = (0,pinia__WEBPACK_IMPORTED_MODULE_3__.defineStore)('auth', {
 
       return new Promise(function (resolve, reject) {
         axios__WEBPACK_IMPORTED_MODULE_0___default().post("auth/logout").then(function (response) {
-          if (response.data.code === 200) {
-            _this3.setLogout();
-          } else {
-            throw new Error("Something wrong while logging out");
-          }
+          _this3.setLogout();
 
           resolve(response);
         })["catch"](function (errors) {

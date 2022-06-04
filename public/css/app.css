@@ -11289,3 +11289,15 @@ textarea.form-control-lg {
 .form-group {
   margin-bottom: 6px;
 }
+
+.w-100 {
+  width: 100%;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #ffffff !important;
+}
+
+.navbar .dropdown > button {
+  color: #ffffff !important;
+}

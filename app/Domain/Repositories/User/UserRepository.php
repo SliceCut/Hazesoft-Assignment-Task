@@ -37,4 +37,9 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     {
         return $this->insertMultiple($data);
     }
+
+    public function deleteUserToken(User $user, $tokenId): bool
+    {
+        return $user->tokens()->where('id', $tokenId)->delete();
+    }
 }

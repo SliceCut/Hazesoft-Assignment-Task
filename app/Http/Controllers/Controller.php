@@ -26,10 +26,17 @@ class Controller extends BaseController
 
     public function responseOk(string $message, $data = null, int $code = 200): Response
     {
-        return new Response([
-            'data' => $data,
-            'message' => $message
-        ], $code);
+        if($data) {
+            return new Response([
+                'data' => $data,
+                'message' => $message
+            ], $code);
+        } else {
+            return new Response([
+                'message' => $message
+            ], $code);
+        }
+        
     }
 
     public function responsePaginate($data)

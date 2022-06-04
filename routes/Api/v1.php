@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\Auth\AuthLogoutController;
 use App\Http\Controllers\Api\V1\Auth\AuthUserDetailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\Auth\LoginController;
@@ -16,6 +17,7 @@ Route::get('companies/{company}/employees', [CompanyController::class, 'getPagin
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('auth/user', AuthUserDetailController::class);
+    Route::post('auth/logout', AuthLogoutController::class);
 
     Route::group(['prefix' => 'list'], function () {
         Route::get('company', [CompanyListController::class, 'getAllCompanyList'])->name('list.company');

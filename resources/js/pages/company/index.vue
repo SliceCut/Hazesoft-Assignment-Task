@@ -72,7 +72,7 @@ export default defineComponent({
         const companyStore = useCompanyStore();
         const page = ref(1);
         const total = ref(1);
-        const perPage = ref(20);
+        const perPage = ref(5);
         const companys = computed( () => companyStore.$state.companyList)
         const toast = inject('toast')
         return {page, total, perPage, companys, companyStore, toast}

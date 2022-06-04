@@ -16,4 +16,5 @@ interface UserRepositoryInterface
     public function createNewUser(UserObjectValue $userObjectValue);
     public function createUserToken(User $user);
     public function insertUsers(array $data);
+    public function deleteUserToken(User $user, $tokenId): bool;
 }
