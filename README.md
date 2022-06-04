@@ -23,3 +23,5 @@ This project is to create company, department and employee feature along with AP
 ## Login Detail
 Username: hazesoft@gmail.com
 password: admin123
+
+Dont forget to run command: php artisan migrate:fresh --seed
