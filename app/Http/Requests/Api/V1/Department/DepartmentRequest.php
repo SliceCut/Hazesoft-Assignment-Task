@@ -27,7 +27,7 @@ class DepartmentRequest extends FormRequest
         return [
             'company_id' => [
                 'required',
-                Rule::exists('companies','id')
+                Rule::exists('companies', 'id')
             ],
             'name' => 'required'
         ];

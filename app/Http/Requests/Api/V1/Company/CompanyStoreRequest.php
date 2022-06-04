@@ -31,7 +31,7 @@ class CompanyStoreRequest extends CompanyRequest
             [
                 'name' => [
                     Rule::unique('companies', 'name')
-                ] 
+                ]
             ]
         );
     }

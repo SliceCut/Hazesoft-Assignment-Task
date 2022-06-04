@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Domain\Abstracts;
 
 use Illuminate\Database\Eloquent\Builder;

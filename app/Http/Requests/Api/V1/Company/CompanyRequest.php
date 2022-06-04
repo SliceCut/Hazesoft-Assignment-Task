@@ -30,7 +30,7 @@ class CompanyRequest extends FormRequest
             'location' => ['required','string','max:255'],
             'contact_number' => [
                 'required',
-                new PhoneNumberValidationRule    
+                new PhoneNumberValidationRule()
             ],
         ];
     }

@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Builder;
 
-interface BaseRepositoryInterface {
+interface BaseRepositoryInterface
+{
     public function queryBuilder(): Builder;
     public function withRelations(array $relation): self;
     public function withCounts(array $counts): self;

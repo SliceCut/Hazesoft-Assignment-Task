@@ -20,7 +20,7 @@ class CompanyTest extends TestCase
         $response = $this->get('/api/v1/companies', [
             'perPage' => 1
         ]);
-        $response->assertJson(function(AssertableJson $json){
+        $response->assertJson(function (AssertableJson $json) {
             $json->hasAll([
                 'data',
                 'message',
@@ -44,7 +44,7 @@ class CompanyTest extends TestCase
 
         $response = $this->post('/api/v1/companies', $company);
 
-        $response->assertJson(function(AssertableJson $json) use($company){
+        $response->assertJson(function (AssertableJson $json) use ($company) {
             $json->hasAll([
                 'data',
                 'message'

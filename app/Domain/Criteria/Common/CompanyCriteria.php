@@ -10,7 +10,7 @@ class CompanyCriteria implements CriteriaInterface
     private $company_id;
 
     public function __construct($company_id)
-    {   
+    {
         $this->company_id = $company_id;
     }
 

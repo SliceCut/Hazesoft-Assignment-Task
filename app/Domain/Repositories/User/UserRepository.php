@@ -20,7 +20,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
 
     public function getUsers(array $select = ['*'], string $order = 'id', string $sort = 'desc')
     {
-        return $this->all($select, $order, $sort);        
+        return $this->all($select, $order, $sort);
     }
 
     public function createNewUser(UserObjectValue $userObjectValue)

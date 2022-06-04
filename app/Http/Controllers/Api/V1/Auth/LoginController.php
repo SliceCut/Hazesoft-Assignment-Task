@@ -17,8 +17,7 @@ class LoginController extends Controller
 
     public function __construct(
         UserRepositoryInterface $userRepository
-    )
-    {
+    ) {
         $this->userRepository = $userRepository;
     }
 

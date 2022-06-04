@@ -30,7 +30,7 @@ class DepartmentStoreRequest extends DepartmentRequest
             $rules,
             [
                 'name' => [
-                    Rule::unique('departments','name')->where('company_id', $this->company_id)
+                    Rule::unique('departments', 'name')->where('company_id', $this->company_id)
                 ]
             ]
         );

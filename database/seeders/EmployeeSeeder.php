@@ -16,9 +16,9 @@ class EmployeeSeeder extends Seeder
     public function __construct(
         DepartmentRepositoryInterface $departmentRepository,
         EmployeeRepositoryInterface $employeeRepository
-    ){
-        $this->departmentRepository = $departmentRepository;   
-        $this->employeeRepository = $employeeRepository;   
+    ) {
+        $this->departmentRepository = $departmentRepository;
+        $this->employeeRepository = $employeeRepository;
     }
 
     /**
@@ -32,12 +32,12 @@ class EmployeeSeeder extends Seeder
         Employee::factory()
             ->count(10)
             ->make()
-            ->each(function($row) use($departments){
+            ->each(function ($row) use ($departments) {
                 $employee = $this->employeeRepository->createNewEmployee(
                     EmployeeFactory::make($row->toArray())
                 );
 
-                $this->employeeRepository->syncDepartment($employee,$departments->toArray());
+                $this->employeeRepository->syncDepartment($employee, $departments->toArray());
             });
     }
 }

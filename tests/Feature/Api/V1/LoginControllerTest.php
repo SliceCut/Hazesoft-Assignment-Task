@@ -12,7 +12,7 @@ class LoginControllerTest extends TestCase
 {
     use RefreshDatabase;
     use SetupTrait;
-    
+
     /**
      * A basic feature test example.
      *
@@ -24,11 +24,11 @@ class LoginControllerTest extends TestCase
             'email' => 'hazesoft@gmail.com',
             'password' => 'admin123',
         ];
-        $response = $this->post(route('api.v1.login'),$data);
+        $response = $this->post(route('api.v1.login'), $data);
 
-        $response->assertJson(function(AssertableJson $json) use($data) {
-            $json->where('user.email', $data['email'] )
-                ->whereType('token','string');
+        $response->assertJson(function (AssertableJson $json) use ($data) {
+            $json->where('user.email', $data['email'])
+                ->whereType('token', 'string');
         });
     }
 
@@ -43,7 +43,7 @@ class LoginControllerTest extends TestCase
             'email' => 'hazesoft@gmail.com',
             'password' => 'admin125454',
         ];
-        $response = $this->post(route('api.v1.login'),$data);
+        $response = $this->post(route('api.v1.login'), $data);
 
         $response->assertStatus(401);
     }

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Domain\Factories;
 
 use App\Domain\Abstracts\FactoryAbstract;

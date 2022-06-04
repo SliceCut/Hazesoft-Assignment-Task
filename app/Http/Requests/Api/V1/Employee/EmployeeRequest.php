@@ -28,7 +28,7 @@ class EmployeeRequest extends FormRequest
         return [
             'company_id' => [
                 'required',
-                Rule::exists('companies','id')
+                Rule::exists('companies', 'id')
             ],
             'name' => [
                 'required',
@@ -43,7 +43,7 @@ class EmployeeRequest extends FormRequest
             'email' => ['required','email','max:255'],
             'contact' => [
                 'required',
-                new PhoneNumberValidationRule,
+                new PhoneNumberValidationRule(),
             ],
             'designation' => ['required','string', 'max:255'],
             'departments' => [
@@ -52,7 +52,7 @@ class EmployeeRequest extends FormRequest
             'departments.*' => ($this->departments && is_array($this->departments))
                 ? [
                     'required',
-                    Rule::exists('departments','id')->where('company_id', $this->company_id)
+                    Rule::exists('departments', 'id')->where('company_id', $this->company_id)
                 ] : []
         ];
     }

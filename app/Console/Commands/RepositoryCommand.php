@@ -61,8 +61,8 @@ class RepositoryCommand extends Command
                 app_path('Console/Stubs/DummyRepositoryInterface.stub'),
                 app_path("{$path}/{$upperModel}RepositoryInterface.php")
             );
-            $this->info($this->argument('model').' Repository and model generated successfully');
-        } catch(\Exception $e) {
+            $this->info($this->argument('model') . ' Repository and model generated successfully');
+        } catch (\Exception $e) {
             $this->error($e->getMessage());
         }
     }

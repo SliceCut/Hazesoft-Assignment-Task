@@ -52,8 +52,8 @@ class DomainFactoryCommand extends Command
                 app_path("{$path}/{$upperModel}Factory.php")
             );
 
-            $this->info($this->argument('model').' Objectvalue generated successfully');
-        } catch(\Exception $e) {
+            $this->info($this->argument('model') . ' Objectvalue generated successfully');
+        } catch (\Exception $e) {
             $this->error($e->getMessage());
         }
     }

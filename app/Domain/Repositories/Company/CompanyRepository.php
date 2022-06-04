@@ -10,7 +10,7 @@ class CompanyRepository extends BaseRepository implements CompanyRepositoryInter
 {
     public function __construct(
         Company $company
-    ){
+    ) {
         parent::__construct($company);
     }
 
@@ -28,7 +28,7 @@ class CompanyRepository extends BaseRepository implements CompanyRepositoryInter
         array $select = ['*'],
         string $order = 'id',
         string $sort = 'desc'
-    ){
+    ) {
         return $this->all($select, $order, $sort);
     }
 
@@ -37,7 +37,7 @@ class CompanyRepository extends BaseRepository implements CompanyRepositoryInter
         int $limit = 20,
         string $order = 'id',
         string $sort = 'desc'
-    ){
+    ) {
         return $this->paginate($select, $limit, $order, $sort);
     }
 
