@@ -200,6 +200,11 @@ abstract class BaseRepository implements BaseRepositoryInterface
         return $this;
     }
 
+    public function pushCriteria(CriteriaInterface $criteriaInterface): self
+    {
+        $this->model = $criteriaInterface->apply($this->model);
+        return $this;
+    }
 
     private function applyFilters()
     {

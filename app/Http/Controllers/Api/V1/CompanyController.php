@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Domain\Criteria\Common\CompanyCriteria;
 use App\Domain\Factories\CompanyFactory;
 use App\Domain\Repositories\Company\CompanyRepositoryInterface;
+use App\Domain\Repositories\Employee\EmployeeRepository;
+use App\Domain\Repositories\Employee\EmployeeRepositoryInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\Company\CompanyStoreRequest;
 use App\Http\Requests\Api\V1\Company\CompanyUpdateRequest;
@@ -14,12 +17,15 @@ use Illuminate\Http\Request;
 class CompanyController extends Controller
 {
     private CompanyRepositoryInterface $companyRepository;
+    private EmployeeRepositoryInterface $employeeRepository;
 
     public function __construct(
-        CompanyRepositoryInterface $companyRepository
+        CompanyRepositoryInterface $companyRepository,
+        EmployeeRepositoryInterface $employeeRepository
     )
     {
         $this->companyRepository = $companyRepository;
+        $this->employeeRepository = $employeeRepository;
     }
 
     /**
@@ -111,6 +117,18 @@ class CompanyController extends Controller
 
         return $this->responseOk(
             "Company deleted successfully",
+        );
+    }
+
+    public function getPaginatedEmployeeList(Request $request, Company $company)
+    {
+        $perpage = $request->get('perPage', 20);
+        return $this->responsePaginate(
+            $this->employeeRepository
+                ->pushCriteria(
+                    new CompanyCriteria($company->id)
+                )
+                ->paginateEmployees(['*'], $perpage)
         );
     }
 }

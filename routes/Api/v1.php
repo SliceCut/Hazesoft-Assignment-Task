@@ -1,16 +1,27 @@
 <?php
 
+use App\Http\Controllers\Api\V1\Auth\AuthUserDetailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\Auth\LoginController;
 use App\Http\Controllers\Api\V1\CompanyController;
 use App\Http\Controllers\Api\V1\DepartmentController;
 use App\Http\Controllers\Api\V1\EmployeeController;
+use App\Http\Controllers\Api\V1\Filters\CompanyListController;
+use App\Http\Controllers\Api\V1\Filters\DepartmentListController;
 
 Route::post('login', LoginController::class)->name('login');
 
 Route::get('companies', [CompanyController::class, 'index']);
+Route::get('companies/{company}/employees', [CompanyController::class, 'getPaginatedEmployeeList']);
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
+
+    Route::get('auth/user', AuthUserDetailController::class);
+
+    Route::group(['prefix' => 'list'], function() {
+        Route::get('company', [CompanyListController::class, 'getAllCompanyList'])->name('list.company');
+        Route::get('department', [DepartmentListController::class, 'getAllDepartmentList'])->name('list.department');
+    });
 
     /**
      * Company route
@@ -28,6 +39,7 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::post('departments',[DepartmentController::class,'store']);
     Route::patch('departments/{department}',[DepartmentController::class,'update']);
     Route::delete('departments/{department}',[DepartmentController::class,'destroy']);
+    Route::get('departments/{department}/employees',[DepartmentController::class,'getEmployeesOfDeparment']);
 
     /**
      * Employee route

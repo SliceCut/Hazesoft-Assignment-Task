@@ -2,12 +2,15 @@
 
 namespace App\Domain\Repositories\Employee;
 
+use App\Domain\Abstracts\CriteriaInterface;
 use App\Domain\ObjectValues\EmployeeObjectValue;
 use App\Models\Employee;
 
 interface EmployeeRepositoryInterface
 {
     public function withRelations(array $relations);
+
+    public function pushCriteria(CriteriaInterface $criteriaInterface): self;
 
     public function findEmployeeOrFail(int $id);
 
@@ -31,4 +34,6 @@ interface EmployeeRepositoryInterface
     public function syncDepartment(Employee $employee, array $data);
 
     public function deleteEmployee(int $id): bool;
+
+    public function getEmployeeDepartments(Employee $employee);
 }

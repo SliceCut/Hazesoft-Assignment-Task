@@ -1,0 +1,84 @@
+<template>
+    <app-layout>
+        <div class="section-header">
+            <h2 class="section-header__title">Company</h2>
+            <div class="btn-groups">
+                <router-link 
+                    :to="{name: 'company.index'}"
+                    class="btn btn-secondary btn-sm"
+                >
+                    View All Company
+                </router-link>
+            </div>
+        </div>
+        <div class="setion-body">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="title">New Company</h2>
+                </div>
+                <div class="card-body">
+                    <CompanyForm
+                        :ref="el => formRef = el"
+                    >
+                        <template v-slot:footer>
+                            <loading-button
+                                class="btn btn-primary btn-sm"
+                                :loading="btnLoading"
+                                title="Submit"
+                                @load="submit()"
+                            ></loading-button>
+                        </template>
+                    </CompanyForm>
+                </div>
+            </div>
+        </div>
+    </app-layout>
+</template>
+<script>
+import { defineComponent, ref ,inject } from "@vue/runtime-core";
+import AppLayout from "@/layouts/AppLayout.vue"
+import CompanyForm from "./CompanyForm.vue"
+import router from '@/router'
+import LoadingButton from "@/components/LoadingButton.vue"
+import {useCompanyStore} from "@/store/company"
+
+export default defineComponent({
+    setup() {
+        const formRef = ref(null)
+        const btnLoading = ref(false)
+        const companyStore = useCompanyStore();
+        const toast = inject('toast')
+        return {formRef, btnLoading, toast, companyStore}
+    },
+    components:{
+        AppLayout,
+        LoadingButton,
+        CompanyForm
+    },
+    mounted() {
+
+    },  
+    methods: {
+        submit() {
+            this.btnLoading = true
+            this.companyStore.createNewCompany(this.formRef.form)
+            .then(response => {
+
+                this.toast.show(response.data.message,{
+                    type: 'success',
+                    position: 'top-right'
+                    // all of other options may go here
+                })
+
+                router.push({name: 'company.index'});
+            })
+            .catch(error => {
+                if(error.response.status === 422) {
+                    this.formRef.setErrors(error.response.data.errors);
+                }
+            })
+            .finally(() => (this.btnLoading = false))
+        }
+    }
+})
+</script>

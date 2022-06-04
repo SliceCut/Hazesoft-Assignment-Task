@@ -7,7 +7,27 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <!-- <a class="nav-link active" aria-current="page" href="#">Users</a> -->
+                <router-link
+                    :to="{name: 'company.index'}"
+                    class="nav-link" 
+                    aria-current="page"
+                >
+                    Company
+                </router-link>
+                <router-link
+                    :to="{name: 'department.index'}"
+                    class="nav-link" 
+                    aria-current="page"
+                >
+                    Department
+                </router-link>
+                <router-link
+                    :to="{name: 'employee.index'}"
+                    class="nav-link" 
+                    aria-current="page"
+                >
+                    Employee
+                </router-link>
             </div>
             </div>
         </div>

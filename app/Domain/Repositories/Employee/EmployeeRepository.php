@@ -2,6 +2,9 @@
 
 namespace App\Domain\Repositories\Employee;
 
+use App\Domain\Abstracts\CriteriaInterface;
+use App\Domain\Criteria\Common\CompanyCriteria;
+use App\Domain\Criteria\Employee\EmployeeDepartmentCriteria;
 use App\Domain\ObjectValues\EmployeeObjectValue;
 use App\Models\Employee;
 use App\Domain\Repositories\BaseRepository;
@@ -10,6 +13,10 @@ use App\Domain\Repositories\Employee\EmployeeRepositoryInterface;
 class EmployeeRepository extends BaseRepository implements EmployeeRepositoryInterface
 {
     protected $defaultRelations = ['company'];
+    protected $filters = [
+        'company_id' => CompanyCriteria::class,
+        'department_id' => EmployeeDepartmentCriteria::class,
+    ];
 
 	/**
      * EmployeeRepository constructor.
@@ -23,7 +30,14 @@ class EmployeeRepository extends BaseRepository implements EmployeeRepositoryInt
 
     public function withRelations(array $relation): self
     {
-        $this->withRelations($relation);
+        parent::withRelations($relation);
+        return $this;
+    }
+
+    public function pushCriteria(CriteriaInterface $criteriaInterface): self
+    {
+        parent::pushCriteria($criteriaInterface);
+
         return $this;
     }
 
@@ -61,7 +75,12 @@ class EmployeeRepository extends BaseRepository implements EmployeeRepositoryInt
     
     public function syncDepartment(Employee $employee, array $datas)
     {
-        return $employee->sync($datas);
+        return $employee->departments()->sync($datas);
+    }
+
+    public function getEmployeeDepartments(Employee $employee)
+    {
+        return $employee->departments()->get();
     }
 
     public function deleteEmployee(int $id): bool

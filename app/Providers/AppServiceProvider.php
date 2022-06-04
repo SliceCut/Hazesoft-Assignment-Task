@@ -58,7 +58,6 @@ class AppServiceProvider extends ServiceProvider
 
         Route::bind('department', function($id, $route) {
             $department = app()->make(DepartmentRepositoryInterface::class);
-        
             return $department->findDepartmentOrFail($id);
         });
 

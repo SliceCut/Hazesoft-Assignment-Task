@@ -33,7 +33,7 @@ class Controller extends BaseController
     public function responsePaginate($data)
     {
         return response()->json([
-            'data' => $data,
+            'data' => $data->items(),
             'current_page' => $data->currentpage(),
             'total' => $data->total(),
             'perPage' => $data->perPage(),

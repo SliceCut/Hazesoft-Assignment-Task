@@ -18,6 +18,7 @@ class DepartmentResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'company_id' => $this->id,
             'company' => CompanyResource::make($this->whenLoaded('company'))
         ];
     }

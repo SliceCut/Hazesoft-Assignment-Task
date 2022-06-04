@@ -55,6 +55,7 @@ class EmployeeController extends Controller
                 EmployeeFactory::make($request->all())
             );
 
+
             if($request->departments) {
                 $this->employeeRepository->syncDepartment($employee, $request->departments);
             }
@@ -80,7 +81,7 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
-        return EmployeeResource::make($employee);
+        return EmployeeResource::make($employee->load('departments'));
     }
 
     /**
@@ -92,6 +93,7 @@ class EmployeeController extends Controller
      */
     public function update(EmployeeUpdateRequest $request, Employee $employee)
     {
+        DB::beginTransaction();
         try {
             $this->employeeRepository->updateEmployee(
                 $employee->id,
@@ -101,7 +103,9 @@ class EmployeeController extends Controller
             if($request->departments) {
                $this->employeeRepository->syncDepartment($employee, $request->departments);
             }
+            DB::commit();
         } catch(\Exception $e) {
+            DB::rollBack();
             return $this->responseError($e);
         }
 
